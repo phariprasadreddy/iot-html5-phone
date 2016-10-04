@@ -69,7 +69,7 @@ Cloudant({account:db_props.username, password:db_props.password}, function(err, 
 	console.log('Connected to Cloudant')
 
 	cloudant.db.list(function(err, all_dbs) {
-		if (all_dbs.length == 0) {
+		if (all_dbs.indexOf('device_credentials') < 0) {
 			// first time -- need to create the iotzone-devices database
 			cloudant.db.create('device_credentials', function() {
 				device_credentials = cloudant.use('device_credentials');
